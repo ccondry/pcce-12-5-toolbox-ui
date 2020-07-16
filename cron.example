@@ -1,0 +1,1 @@
+*/3 * * * * /bin/sh -c 'cd /opt/dcloud/pcce-12-5-toolbox-ui && ./update.sh' 2>&1 | /usr/bin/logger -t cron-update-pcce-12-5-toolbox-ui
