@@ -28,7 +28,7 @@ const endpoints = {
   removeSupport: authUrlBase + '/remove-support',
   instanceRegister: urlBase + '/instances/register',
   provision: urlBase + '/provision',
-  instances: urlBase + '/instances',
+  instances: authUrlBase + '/instances',
   session: urlBase + '/session',
   vertical: urlBase + '/vertical',
   cumulus: urlBase + '/cumulus',
