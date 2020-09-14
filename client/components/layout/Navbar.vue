@@ -8,7 +8,7 @@
           <p class="level-item has-text-centered">
               <a href="/">dCloud Toolbox</a>
               &nbsp;-
-              PCCE 12.5v2 Instant -
+              PCCE 12.5v1 Instant -
               {{ datacenter }} {{ session }}
           </p>
         </div>
