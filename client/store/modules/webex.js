@@ -1,6 +1,6 @@
 // import * as types from '../mutation-types'
 import { post } from '../../utils'
-import { Toast } from 'buefy/dist/components/toast'
+import {ToastProgrammatic as Toast} from 'buefy'
 
 const state = {
   // status: null
