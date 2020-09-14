@@ -125,7 +125,7 @@ export default {
           }
         } else {
           // user is authenticated
-          // get instances of PCCE 12 demo
+          // get instances of PCCE 12.5 demo
           this.getInstances()
           // set the instance using the current URL
           this.updateInstanceName()
