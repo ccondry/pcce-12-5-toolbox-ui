@@ -69,7 +69,7 @@
               <option value="" disabled>Choose Your Multichannel Provider</option>
               <option value="ece">ECE</option>
               <option value="upstream">Upstream</option>
-              <option value="sfdc">Salesforce</option>
+              <option value="salesforce">Salesforce</option>
             </b-select>
           </b-field> -->
 
