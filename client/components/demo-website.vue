@@ -60,13 +60,18 @@
             </b-select>
           </b-field>
 
-          <b-field style="margin-right: 1em;">
-            <b-select v-model="multichannel" @change="multichannelChanged" :disabled="working.app.user">
-                <option value="" disabled>Choose Your Multichannel Provider</option>
-                <option value="ece">ECE</option>
-                <option value="upstream">Upstream</option>
+          <!-- <b-field style="margin-right: 1em;">
+            <b-select
+            v-model="multichannel"
+            @change.native="multichannelChanged"
+            :disabled="working.app.user"
+            >
+              <option value="" disabled>Choose Your Multichannel Provider</option>
+              <option value="ece">ECE</option>
+              <option value="upstream">Upstream</option>
+              <option value="sfdc">Salesforce</option>
             </b-select>
-          </b-field>
+          </b-field> -->
 
           <b-field>
             <button class="button is-success" @click="clickGo" :disabled="working.app.user">Go to Demo Website</button>
