@@ -153,9 +153,9 @@ export default {
     }
   },
 
-  // mounted () {
-  //   this.vertical = this.demoConfig.vertical
-  // },
+  mounted () {
+    this.updateCache()
+  },
 
   computed: {
     ...mapGetters([
@@ -220,10 +220,18 @@ export default {
     ...mapActions([
       'saveDemoConfig'
     ]),
+    updateCache () {
+      try {
+        // copy vertical selection to the one in demo config
+        this.vertical = this.demoConfig.vertical
+        // copy multichannel selection option from demo config value
+        this.multichannel = this.demoConfig.multichannel
+      } catch (e) {
+        // continue - this.demoConfig is probably not ready yet
+      }
+    },
     updateSelection () {
-      const selectedVertical = this.sortedBrands.find(v => {
-        return v.id === this.vertical
-      })
+      const selectedVertical = this.verticals.find(v => v.id === this.vertical)
       console.log('selectedVertical = ', selectedVertical)
       // is this selected vertical owned by someone else?
       if (selectedVertical && selectedVertical.owner !== 'system' &&
@@ -277,11 +285,8 @@ export default {
       // console.log('user watcher: user changed:', val)
     },
     demoConfig (val) {
-      // console.log('demo config changed:', val)
-      // copy vertical selection to the one in demo config
-      this.vertical = val.vertical
-      // copy multichannel selection option from demo config value
-      this.multichannel = val.multichannel
+      console.log('demo config changed:', val)
+      this.updateCache()
     },
     ownerFilter () {
       this.brandFilter = 'other'
