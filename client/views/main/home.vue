@@ -178,6 +178,29 @@
         </div>
       </div>
 
+      <!-- Whatsapp -->
+      <div class="tile is-ancestor" v-if="isProvisioned">
+        <div class="tile is-parent is-12">
+          <article class="tile is-child box">
+            <h1 class="title">Whatsapp</h1>
+            <div class="content">
+              <p>
+                Use the dCloud CC mobile app to place a call or start a chat
+                before using the Whatsapp demo. This will put your contact info
+                into the database for the chat bot to identify you on Whatsapp.
+                This needs to be done again if you haven't used this demo for one week.
+              </p>
+              <p>
+                Send "<strong>{{ whatsappJoinMessage }}</strong>" to
+                <strong>{{ whatsappPhoneNumber }}</strong> using Whatsapp,
+                or scan this QR code to do it automatically:
+              </p>
+              <img :src="whatsappQrUrl" />
+            </div>
+          </article>
+        </div>
+      </div>
+
       <!-- Facebook -->
       <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12">
@@ -355,7 +378,10 @@ export default {
   data () {
     return {
       timerEnd: 0,
-      timerNow: 0
+      timerNow: 0,
+      whatsappJoinMessage: 'join malachite-stork',
+      whatsappPhoneNumber: '+1 (415) 523-8886',
+      whatsappQrUrl: 'https://mm-static.cxdemo.net/whatsapp-qr.png'
     }
   },
 
