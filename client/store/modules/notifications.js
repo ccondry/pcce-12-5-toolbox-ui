@@ -46,7 +46,7 @@ const actions = {
       // exception
       openNotification({
         title: options.title,
-        message: JSON.stringify(options.error),
+        message: options.error.message,
         type: 'danger',
         duration: options.duration || 8000
       })

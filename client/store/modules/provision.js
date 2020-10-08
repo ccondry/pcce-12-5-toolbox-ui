@@ -1,6 +1,6 @@
 import * as types from '../mutation-types'
 import { post, load } from '../../utils'
-// import { DialogProgrammatic as Dialog } from 'buefy'
+import { ToastProgrammatic as Toast } from 'buefy'
 
 const state = {
   status: null
@@ -85,39 +85,29 @@ const actions = {
       const username = getters.user.username
       // console.log('endpoint =', endpoint)
       // make sure their password is right
-      try {
-        // don't test login credentials when user is admin using switch-user
-        if (!getters.user.suJwt) {
-          const auth = await post(getters.instance, getters.jwt, getters.endpoints.login, null, {username, password})
-          console.log('PCCE provision - auth - response:', auth)
-        }
-        // now provision using their toolbox password
-        await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null, {password})
-        // register provision status with pcce-toolbox-proxy
-        // TODO get that static string out of there!
-        const query = {demo: 'pcce', version: '12.5v1'}
-        post(getters.instanceName, getters.jwt, getters.endpoints.instanceRegister, null, query)
-        // .then(r => console.log('successfully registered provision status'))
-        // .catch(e => console.error('provision succeeded, but registering provision status failed:', e))
-        // console.log('PCCE provision status - response:', response)
-        // get new status
-        dispatch('getProvisionStatus', {showNotification: false})
-        // reload all demo selectors
-        // dispatch('loadDemoSelectors', {showNotification: false})
-        // reload call types
-        // dispatch('searchCceObjects', {type: 'callType', showNotification: false})
-        // reload precision queues
-        // dispatch('searchCceObjects', {type: 'precisionQueue', showNotification: false})
-        if (showNotification) {
-          dispatch('successNotification', 'Provisioning successful.')
-        }
-      } catch (e) {
-        console.log('error during PCCE provision script', e)
-        dispatch('errorNotification', {title: 'PCCE provision failed', error: e})
+      // don't test login credentials when user is admin using switch-user
+      if (!getters.user.suJwt) {
+        const auth = await post(getters.instance, getters.jwt, getters.endpoints.login, null, {username, password})
+        console.log('PCCE provision - auth - response:', auth)
       }
+      // now provision using their toolbox password
+      await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null, {password})
+      // register provision status with pcce-toolbox-proxy
+      // TODO get that static string out of there!
+      const query = {demo: 'pcce', version: '12.5v1'}
+      post(getters.instanceName, getters.jwt, getters.endpoints.instanceRegister, null, query)
+      // get new status
+      dispatch('getProvisionStatus', {showNotification: false})
+      Toast.open({
+        message: `Provisioning successful`,
+        type: 'is-success'
+      })
     } catch (e) {
       console.log('error during PCCE provision script', e)
-      dispatch('errorNotification', {title: 'PCCE provision script failed', error: e})
+      Toast.open({
+        message: `PCCE provision failed: ${e.message}`,
+        type: 'is-danger'
+      })
     } finally {
       dispatch('setWorking', {group: 'user', type: 'provision', value: false})
     }
