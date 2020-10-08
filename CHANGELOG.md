@@ -3,6 +3,13 @@
 Dates are in YYYY-MM-DD format
 
 
+# 1.4.1 (2020-10-08)
+
+### Bug Fixes
+
+* **Notifications:** fix error notification display
+
+
 # 1.4.0 (2020-10-05)
 
 ### Features
