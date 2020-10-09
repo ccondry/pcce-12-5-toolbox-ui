@@ -258,8 +258,7 @@
                 <a href="https://ccedata.dcloud.cisco.com/cceadmin/" target="cceadmin">
                   CCE Web Administration (SPOG)
                 </a>.
-                You must be on the Workstation and/or the VPN to access the CUIC
-                server.
+                You must be on the Workstation and/or the VPN to access SPOG.
               </p>
               <p>
                 Your department administrator credentials for SPOG are:
