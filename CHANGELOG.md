@@ -1,6 +1,12 @@
 # pcce-12-5-toolbox-ui Change Log
 
-Dates are in YYYY-MM-DD format
+Version numbers ard dates in YYYY.MM.DD.X format, where X is the revision number
+
+
+# 2020.10.09.1
+
+### Bug Fixes
+* **SPOG:** fix display text referring to "CUIC" instead of "SPOG"
 
 
 # 1.4.1 (2020-10-08)
