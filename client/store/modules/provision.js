@@ -45,39 +45,6 @@ const actions = {
       dispatch('setLoading', {group: 'user', type: 'provision', value: false})
     }
   },
-  // async provisionUser ({getters, commit, dispatch}, showNotification = true) {
-  //   dispatch('setWorking', {group: 'user', type: 'provision', value: true})
-  //   console.log('starting provision...')
-  //   try {
-  //     const endpoint = getters.endpoints.provision
-  //     try {
-  //       // send provision request to API
-  //       await post(getters.instanceName, getters.jwt, endpoint)
-  //       if (showNotification) {
-  //         dispatch('successNotification', 'Successfully provisioning your account.')
-  //         // Dialog.alert({
-  //         //   title: 'Provision Successful',
-  //         //   message: `Your Cisco Webex Contact Center account is now
-  //         //   provisioned, however your routing script is not enabled yet. <br>To
-  //         //   enable your agent to receive calls, you can either wait for the automatic
-  //         //   process to do this at midnight EST tonight, or contact support using the
-  //         //   Webex Teams support room.`,
-  //         //   type: 'is-success',
-  //         //   confirmText: 'I Understand'
-  //         // })
-  //       }
-  //       dispatch('getProvisionStatus', false)
-  //     } catch (e) {
-  //       console.log('error during provision script', e)
-  //       dispatch('errorNotification', {title: 'provision failed', error: e})
-  //     }
-  //   } catch (e) {
-  //     console.log('error during provision script', e)
-  //     dispatch('errorNotification', {title: 'provision script failed', error: e})
-  //   } finally {
-  //     dispatch('setWorking', {group: 'user', type: 'provision', value: false})
-  //   }
-  // }
   async provisionUser ({getters, commit, dispatch}, {password, showNotification = true}) {
     dispatch('setWorking', {group: 'user', type: 'provision', value: true})
     console.log('starting PCCE provision...')
