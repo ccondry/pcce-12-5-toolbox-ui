@@ -49,7 +49,6 @@ const actions = {
     dispatch('setWorking', {group: 'user', type: 'provision', value: true})
     console.log('starting PCCE provision...')
     try {
-      const username = getters.user.username
       // now provision their account
       await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null)
       // register provision status with pcce-toolbox-proxy
