@@ -189,7 +189,7 @@ export default {
 //   animation-duration: .377s;
 // }
 
-@import '~bulma';
+// @import '~bulma';
 
 $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
