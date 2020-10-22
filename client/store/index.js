@@ -37,7 +37,8 @@ const store = new Vuex.Store({
       templates: {},
       user: {},
       session: {},
-      upstream: {}
+      upstream: {},
+      campaign: {}
     },
     loading: {
       admin: {},
@@ -51,7 +52,8 @@ const store = new Vuex.Store({
       templates: {},
       user: {},
       session: {},
-      upstream: {}
+      upstream: {},
+      campaign: {}
     }
   },
   mutations

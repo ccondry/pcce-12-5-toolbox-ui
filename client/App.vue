@@ -221,4 +221,10 @@ html {
     }
   }
 }
+
+// fix buefy switch in b-field with floating label
+.field.is-floating-label .switch, .field.is-floating-in-label .switch {
+  padding-top: 1rem;
+  padding-left: 0.6rem;
+}
 </style>

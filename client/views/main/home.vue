@@ -340,6 +340,14 @@
         </div>
       </div>
 
+      <div class="tile is-ancestor" v-if="isProvisioned">
+        <div class="tile is-parent is-12">
+          <article class="tile is-child box">
+            <h1 class="title">Outbound Campaigns</h1>
+            <campaigns />
+          </article>
+        </div>
+      </div>
 
       <div class="tile is-ancestor" v-if="isProvisioned">
         <!-- user not provisioned - show provision button -->
@@ -372,11 +380,13 @@ import {mapActions, mapGetters} from 'vuex'
 import Agents from '../../components/agents.vue'
 import moment from 'moment'
 import DemoWebsite from '../../components/demo-website'
+import Campaigns from '../../components/campaigns'
 
 export default {
   components: {
     Agents,
-    DemoWebsite
+    DemoWebsite,
+    Campaigns
   },
 
   data () {

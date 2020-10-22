@@ -12,6 +12,7 @@ import webex from './webex'
 import dcloud from './dcloud'
 import endpoints from './endpoints'
 import finesse from './finesse'
+import campaign from './campaign'
 
 export default {
   app,
@@ -27,5 +28,6 @@ export default {
   webex,
   dcloud,
   endpoints,
-  finesse
+  finesse,
+  campaign
 }
