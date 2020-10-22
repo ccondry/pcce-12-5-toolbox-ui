@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
 the revision number
 
 
+# 2020.10.22-2
+
+### Features
+* **SSO:** revert changes to SSO and VPN/toolbox password
+
+
 # 2020.10.22-1
 
 ### Features
