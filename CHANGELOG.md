@@ -1,6 +1,15 @@
 # pcce-12-5-toolbox-ui Change Log
 
-Version numbers ard dates in YYYY.MM.DD.X format, where X is the revision number
+Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
+the revision number
+
+
+# 2020.10.22
+
+### Features
+* **Provision, SPOG, VPN:** Provision, SPOG, and VPN now use C1sco12345 password
+instead of toolbox password, to migrate to Cisco SSO only for toolbox
+authentication.
 
 
 # 2020.10.09.1
