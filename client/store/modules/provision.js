@@ -45,12 +45,20 @@ const actions = {
       dispatch('setLoading', {group: 'user', type: 'provision', value: false})
     }
   },
-  async provisionUser ({getters, dispatch}) {
+  async provisionUser ({getters, commit, dispatch}, {password, showNotification = true}) {
     dispatch('setWorking', {group: 'user', type: 'provision', value: true})
     console.log('starting PCCE provision...')
     try {
-      // now provision their account
-      await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null)
+      const username = getters.user.username
+      // console.log('endpoint =', endpoint)
+      // make sure their password is right
+      // don't test login credentials when user is admin using switch-user
+      if (!getters.user.suJwt) {
+        const auth = await post(getters.instance, getters.jwt, getters.endpoints.login, null, {username, password})
+        console.log('PCCE provision - auth - response:', auth)
+      }
+      // now provision using their toolbox password
+      await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null, {password})
       // register provision status with pcce-toolbox-proxy
       // TODO get that static string out of there!
       const query = {demo: 'pcce', version: '12.5v1'}
