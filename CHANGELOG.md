@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
 the revision number
 
 
+# 2020.10.22-1
+
+### Features
+* **Outbound Campaigns:** add outbound campaign contact list manager
+
+
 # 2020.10.22
 
 ### Features
