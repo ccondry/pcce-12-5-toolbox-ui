@@ -1,7 +1,6 @@
 <template>
   <div>
     <b-table
-    v-if="campaigns.length"
     :data="campaigns"
     ref="campaignsTable"
     :narrowed="true"
