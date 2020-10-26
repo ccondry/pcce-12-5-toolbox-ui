@@ -1,5 +1,6 @@
 <template>
   <div>
+    <pre>{{ campaigns }}</pre>
     <b-table
     :data="campaigns || []"
     ref="campaignsTable"
