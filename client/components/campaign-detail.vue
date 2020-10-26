@@ -5,6 +5,7 @@
       <div style="display: flex; flex-direction: column;">
         <div class="box">
           <b-table
+          :ref="`campaign${id}DetailTable`"
           :data="tableData"
           :loading="isLoading"
           :paginated="tableData.length > 15"
