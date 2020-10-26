@@ -1,8 +1,8 @@
 <template>
   <div>
-    <pre>{{ campaigns }}</pre>
     <b-table
-    :data="campaigns || []"
+    v-if="campaigns.length"
+    :data="campaigns"
     ref="campaignsTable"
     :narrowed="true"
     :loading="isLoading"
