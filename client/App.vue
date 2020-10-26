@@ -227,4 +227,10 @@ html {
   padding-top: 1rem;
   padding-left: 0.6rem;
 }
+
+// fix buefy checkbox in b-field with floating label
+.field.is-floating-label .checkbox, .field.is-floating-in-label .checkbox {
+  padding-top: 1rem;
+  padding-left: 0.6rem;
+}
 </style>
