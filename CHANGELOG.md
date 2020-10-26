@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
 the revision number
 
 
+# 2020.10.26-1
+
+### Bug Fixes
+* **Outbound Campaigns:** Fixed the table component again.
+
+
 # 2020.10.26
 
 ### Features
