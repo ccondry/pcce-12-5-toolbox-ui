@@ -26,10 +26,10 @@
       field="id"
       label="ID"
       sortable
-      v-slot="props"
+      v-slot="colprops"
       >
-        <a @click="$refs.campaignsTable.toggleDetails(props.row)">
-          {{ props.row.id }}
+        <a @click="$refs.campaignsTable.toggleDetails(colprops.row)">
+          {{ colprops.row.id }}
         </a>
       </b-table-column>
 
@@ -37,10 +37,10 @@
       field="name"
       label="Name"
       sortable
-      v-slot="props"
+      v-slot="colprops"
       >
-        <a @click="$refs.campaignsTable.toggleDetails(props.row)">
-          {{ props.row.name }}
+        <a @click="$refs.campaignsTable.toggleDetails(colprops.row)">
+          {{ colprops.row.name }}
         </a>
       </b-table-column>
 
@@ -48,34 +48,34 @@
       field="dialingMode"
       label="Mode"
       sortable
-      v-slot="props"
+      v-slot="colprops"
       >
-        {{ modes[props.row.dialingMode] }}
+        {{ modes[colprops.row.dialingMode] }}
       </b-table-column>
 
       <b-table-column
       field="campaignPurposeType"
       label="Type"
       sortable
-      v-slot="props"
+      v-slot="colprops"
       >
-        {{ types[props.row.campaignPurposeType] }}
+        {{ types[colprops.row.campaignPurposeType] }}
       </b-table-column>
 
       <b-table-column
       field="enabled"
       label="Enabled"
       sortable
-      v-slot="props"
+      v-slot="colprops"
       >
-        {{ props.row.enabled }}
+        {{ colprops.row.enabled }}
       </b-table-column>
 
-      <template slot="detail" slot-scope="props">
+      <template slot="detail" slot-scope="colprops">
         <article class="media">
           <div class="media-content">
-            <!-- <pre>{{ props.row }}</pre> -->
-            <campaign-detail :campaign="props.row" />
+            <!-- <pre>{{ colprops.row }}</pre> -->
+            <campaign-detail :campaign="colprops.row" />
           </div>
         </article>
       </template>
