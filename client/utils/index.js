@@ -124,7 +124,11 @@ export const fetch = async function (url, options = {}) {
       error.status = response.status
       error.statusText = response.statusText
       error.text = m
-      error.json = JSON.parse(text)
+      try {
+        error.json = JSON.parse(text)
+      } catch (e) {
+        // continue
+      }
       throw error
     }
   } catch (e) {
