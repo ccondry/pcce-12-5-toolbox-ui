@@ -340,9 +340,6 @@
           <article class="tile is-child box">
             <h1 class="title">
               Outbound Campaigns
-              <b-button @click="clickRefreshCampaigns" type="is-info">
-                Refresh
-              </b-button>
             </h1>
             <campaigns />
           </article>
