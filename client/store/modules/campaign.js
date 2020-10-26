@@ -48,7 +48,7 @@ const actions = {
       })
     } catch (e) {
       Toast.open({
-        message: 'Failed to get campaigns: ' + e.message,
+        message: 'Failed to get dialing records: ' + e.message,
         type: 'is-danger',
         duration: 12 * 1000
       })
