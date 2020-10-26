@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-table
-    :data="campaigns"
+    :data="campaigns || []"
     ref="campaignsTable"
     :narrowed="true"
     :loading="isLoading"
@@ -10,6 +10,17 @@
     :show-detail-icon="true"
     @details-open="openDetails"
     >
+      <template slot="empty">
+        <div class="section">
+          <div class="content has-text-grey has-text-centered">
+            <div v-if="isLoading && !campaigns.length">
+              <b-loading :is-full-page="false" :active="true" />
+            </div>
+            <div v-else>No outbound campaigns found.</div>
+          </div>
+        </div>
+      </template>
+
       <b-table-column
       field="id"
       label="ID"
