@@ -10,12 +10,6 @@
       @save-as="saveAsNewTemplate" />
     </b-modal>
 
-    <!-- Save Template Modal -->
-    <!-- <b-modal :active.sync="showSaveTemplateModal" :can-cancel="true" has-modal-card width="960">
-      <save-template-modal
-      @submit="doSaveTemplate" />
-    </b-modal> -->
-
     <div class="tile is-ancestor">
       <div class="tile is-parent is-vertical">
         <article class="tile is-child box">
@@ -53,20 +47,15 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Templates from '../../components/templates'
-// import GadgetSelector from './gadget-selector.vue'
-import SaveTemplateModal from '../../components/modals/save-template.vue'
 import {xml2js, js2xml} from '../../parsers'
 
 export default {
   components: {
-    Templates,
-    // GadgetSelector,
-    SaveTemplateModal
+    Templates
   },
 
   data () {
     return {
-      showSaveTemplateModal: false,
       showTemplateModal: false,
       layoutJson: {},
       // gadgets: [],
@@ -174,7 +163,6 @@ export default {
       // received $emit('save') from templates component
       console.log('doSaveTemplate', name)
       // hide modal
-      this.showSaveTemplateModal = false
       this.saveTemplate({
         type: 'finesse',
         name: name,

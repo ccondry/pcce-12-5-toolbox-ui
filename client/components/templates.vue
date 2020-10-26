@@ -22,11 +22,6 @@
           </b-select>
         </div>
         <b-field grouped group-multiline>
-          <!-- <p class="control">
-            <button type="button" class="button is-primary"
-            @click="clickLoadTemplate"
-            :disabled="!selectedTemplate">Load</button>
-          </p> -->
           <p class="control" v-if="!compact">
             <button type="button" class="button is-success"
             @click="clickSaveTemplate"
@@ -63,31 +58,14 @@
     </div>
   </form>
 
-  <!-- <div> -->
-
-    <!--
-
-    <save-template-modal
-    ref="modal"
-    :visible="showModal"
-    title="Save As New Template"
-    @close="showModal = false"
-    @submit="modalSubmit" /> -->
-
-  <!-- </div> -->
 </template>
 
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import SaveTemplateModal from './modals/save-template.vue'
 
 export default {
   props: ['type', 'compact'],
-
-  components: {
-    SaveTemplateModal
-  },
 
   data () {
     return {

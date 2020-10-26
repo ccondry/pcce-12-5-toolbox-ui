@@ -16,7 +16,6 @@ Vue.use(Buefy)
 Vue.router = router
 
 Vue.use(NProgress)
-Vue.use(require('vue-moment'))
 // Enable devtools
 Vue.config.devtools = true
 
