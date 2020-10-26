@@ -194,6 +194,11 @@
     <b-tab-item label="Upload Records">
       <upload-records :campaign="campaign" />
     </b-tab-item>
+
+    <!-- Sample Records -->
+    <b-tab-item label="Sample Record CSV Files">
+      <sample-records :campaign="campaign" />
+    </b-tab-item>
     <!-- /Upload Records Tab -->
   </b-tabs>
 </template>
@@ -201,10 +206,12 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import UploadRecords from './upload-records'
+import SampleRecords from './sample-records'
 
 export default {
   components: {
-    UploadRecords
+    UploadRecords,
+    SampleRecords
   },
 
   props: {
@@ -226,7 +233,7 @@ export default {
       lastName: '',
       accountNumber: '1234',
       overwrite: false,
-      activeTab: 2
+      activeTab: 0
       // sort: 'firstName asc'
     }
   },

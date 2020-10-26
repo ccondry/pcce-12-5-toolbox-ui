@@ -3,12 +3,12 @@ const isProduction = process.env.NODE_ENV === 'production'
 let authUrlBase = '/api/v1/auth'
 let urlBase = '/api/v1/pcce-12-5'
 if (!isProduction) {
-  authUrlBase = 'http://localhost:3032/api/v1/auth'
+  // authUrlBase = 'http://localhost:3032/api/v1/auth'
   // urlBase = 'http://localhost:3053/api/v1/pcce-12-5'
-  urlBase = 'http://localhost:3058/api/v1/pcce-12-5'
+  // urlBase = 'http://localhost:3058/api/v1/pcce-12-5'
   // use production REST APIs
-  // authUrlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/auth'
-  // urlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/pcce-12-5'
+  authUrlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/auth'
+  urlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/pcce-12-5'
 }
 
 const endpoints = {

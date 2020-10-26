@@ -338,7 +338,12 @@
       <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12">
           <article class="tile is-child box">
-            <h1 class="title">Outbound Campaigns</h1>
+            <h1 class="title">
+              Outbound Campaigns
+              <b-button @click="clickRefreshCampaigns" type="is-info">
+                Refresh
+              </b-button>
+            </h1>
             <campaigns />
           </article>
         </div>
@@ -424,8 +429,12 @@ export default {
       'inviteToSupportRoom',
       'getProvisionStatus',
       'provisionUser',
-      'copyToClipboard'
+      'copyToClipboard',
+      'getCampaigns'
     ]),
+    clickRefreshCampaigns () {
+      this.getCampaigns()
+    },
     clickCopy (string, type) {
       this.copyToClipboard({string, type})
     },
