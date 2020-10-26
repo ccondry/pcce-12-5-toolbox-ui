@@ -1,207 +1,212 @@
 <template>
-  <div style="display: flex; flex-direction: column;">
-    <!-- <pre>{{ paginationData }}</pre>
-    <pre>{{ sortField }}</pre>
-    <pre>{{ defaultSortOrder }}</pre> -->
-    <section
-    class="box"
-    style="position:"
-    >
-      <!-- heading -->
-      <div class="title">
-        Contact Records
+  <b-tabs v-model="activeTab">
+    <!-- Current Records Tab -->
+    <b-tab-item label="Current Records">
+      <div style="display: flex; flex-direction: column;">
+        <div class="box">
+          <b-table
+          :data="tableData"
+          :loading="isLoading"
+          :paginated="tableData.length > 15"
+          :narrowed="true"
+          :per-page="15"
+          aria-next-label="Next page"
+          aria-previous-label="Previous page"
+          aria-page-label="Page"
+          aria-current-label="Current page"
+          >
+
+            <template slot="empty">
+              <section class="section">
+                <div class="content has-text-grey has-text-centered">
+                  <div v-if="isLoading && !tableData.length">
+                    <b-loading :is-full-page="false" :active="true" />
+                  </div>
+                  <div v-else>No contact records found.</div>
+                </div>
+              </section>
+            </template>
+
+            <b-table-column
+            field="id"
+            label="ID"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.id }}
+            </b-table-column>
+
+            <b-table-column
+            field="accountNumber"
+            label="Account Number"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.accountNumber }}
+            </b-table-column>
+
+            <b-table-column
+            field="firstName"
+            label="First Name"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.firstName }}
+            </b-table-column>
+
+            <b-table-column
+            field="lastName"
+            label="Last Name"
+            sortable
+            v-slot="props"
+            >
+                {{ props.row.lastName }}
+            </b-table-column>
+
+            <b-table-column
+            field="phone01.number"
+            label="Phone Number"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.phone01.number }}
+            </b-table-column>
+
+            <b-table-column
+            field="callStatus"
+            label="Status"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.callStatus }}
+            </b-table-column>
+
+            <b-table-column
+            field="callsMade"
+            label="Calls Made"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.callsMade }}
+            </b-table-column>
+
+            <b-table-column
+            field="callResultOverall"
+            label="Overall Result"
+            sortable
+            v-slot="props"
+            >
+              {{ props.row.callResultOverall }}
+            </b-table-column>
+
+          </b-table>
+          
+          <div class="buttons" style="display: flex; justify-content: flex-end; padding-top: 1rem;">
+            <b-button
+            type="is-info"
+            @click="clickRefresh"
+            :disabled="isLoading"
+            >
+              Refresh Records
+            </b-button>
+            <b-button
+            @click="clickDelete"
+            type="is-danger"
+            :disabled="!tableData.length || isLoading || isWorking"
+            >
+            Delete All Records
+            </b-button>
+          </div>
+        </div>
       </div>
-      <div class="subtitle">
-        {{ campaign.name }}
-      </div>
+    </b-tab-item>
 
-      <!-- table -->
-      <b-table
-      :data="tableData"
-      :loading="isLoading"
-      :paginated="tableData.length > 15"
-      :narrowed="true"
-      :per-page="15"
-      aria-next-label="Next page"
-      aria-previous-label="Previous page"
-      aria-page-label="Page"
-      aria-current-label="Current page"
-      >
-
-        <template slot="empty">
-          <section class="section">
-            <div class="content has-text-grey has-text-centered">
-              <div v-if="isLoading && !tableData.length">
-                <b-loading :is-full-page="false" :active="true" />
-              </div>
-              <div v-else>No contact records found.</div>
-            </div>
-          </section>
-        </template>
-
-        <b-table-column
-        field="id"
-        label="ID"
-        sortable
-        v-slot="props"
-        >
-          {{ props.row.id }}
-        </b-table-column>
-
-        <b-table-column
-        field="accountNumber"
+    <!-- Create Record Tab -->
+    <b-tab-item label="Create Record">
+      <div class="box" style="width: 40rem;">
+        <b-loading :is-full-page="false" :active="isWorking" />
+        <!-- account number -->
+        <b-field
         label="Account Number"
-        sortable
-        v-slot="props"
+        label-position="on-border"
+        :message="accountNumberMessage"
+        :type="accountNumberType"
         >
-          {{ props.row.accountNumber }}
-        </b-table-column>
+          <b-input v-model="accountNumber" />
+        </b-field>
 
-        <b-table-column
-        field="firstName"
+        <!-- first name -->
+        <b-field
         label="First Name"
-        sortable
-        v-slot="props"
+        label-position="on-border"
+        :message="firstNameMessage"
+        :type="firstNameType"
         >
-          {{ props.row.firstName }}
-        </b-table-column>
+          <b-input
+          v-model="firstName"
+          />
+        </b-field>
 
-        <b-table-column
-        field="lastName"
+        <!-- last name -->
+        <b-field
         label="Last Name"
-        sortable
-        v-slot="props"
+        label-position="on-border"
+        :message="lastNameMessage"
+        :type="lastNameType"
         >
-            {{ props.row.lastName }}
-        </b-table-column>
+          <b-input v-model="lastName" />
+        </b-field>
 
-        <b-table-column
-        field="phone01.number"
+        <!-- phone number -->
+        <b-field
         label="Phone Number"
-        sortable
-        v-slot="props"
+        label-position="on-border"
+        :message="phoneMessage"
+        :type="phoneType"
         >
-          {{ props.row.phone01.number }}
-        </b-table-column>
+          <b-input v-model="phone" />
+        </b-field>
 
-        <b-table-column
-        field="callStatus"
-        label="Status"
-        sortable
-        v-slot="props"
+        <!-- overwrite -->
+        <b-field
+        label="Overwrite Previous Records"
         >
-          {{ props.row.callStatus }}
-        </b-table-column>
+          <b-checkbox v-model="overwrite">
+            {{ overwrite ? 'Yes' : 'No' }}
+          </b-checkbox> 
+        </b-field>
 
-        <b-table-column
-        field="callsMade"
-        label="Calls Made"
-        sortable
-        v-slot="props"
-        >
-          {{ props.row.callsMade }}
-        </b-table-column>
-
-        <b-table-column
-        field="callResultOverall"
-        label="Overall Result"
-        sortable
-        v-slot="props"
-        >
-          {{ props.row.callResultOverall }}
-        </b-table-column>
-
-      </b-table>
-      <div class="buttons" style="display: flex; flex: 0 1; float: right; padding-top: 1rem;">
-        <b-button
-        type="is-info"
-        @click="clickRefresh"
-        :disabled="isLoading"
-        >
-          Refresh Records
-        </b-button>
-        <b-button
-        @click="clickDelete"
-        type="is-danger"
-        :disabled="!tableData.length || isLoading || isWorking"
-        >
-        Delete All Records
-        </b-button>
+        <!-- submit -->
+        <div class="buttons" style="display: flex; justify-content: flex-end;">
+          <b-button
+          type="is-success"
+          class="float: left;"
+          @click="clickAdd"
+          :disabled="isLoading || isWorking"
+          >
+            Add Outbound Record
+          </b-button>
+        </div>
       </div>
-    </section>
+    </b-tab-item>
 
-    <section class="box">
-      <b-loading :is-full-page="false" :active="isWorking" />
-      <p class="subtitle">
-        Create Contact Record
-      </p>
-      
-      <!-- account number -->
-      <b-field
-      label="Account Number"
-      label-position="on-border"
-      :message="accountNumberMessage"
-      :type="accountNumberType"
-      >
-        <b-input v-model="accountNumber" />
-      </b-field>
-
-      <!-- first name -->
-      <b-field
-      label="First Name"
-      label-position="on-border"
-      :message="firstNameMessage"
-      :type="firstNameType"
-      >
-        <b-input
-        v-model="firstName"
-        />
-      </b-field>
-
-      <!-- last name -->
-      <b-field
-      label="Last Name"
-      label-position="on-border"
-      :message="lastNameMessage"
-      :type="lastNameType"
-      >
-        <b-input v-model="lastName" />
-      </b-field>
-
-      <!-- phone number -->
-      <b-field
-      label="Phone Number"
-      label-position="on-border"
-      :message="phoneMessage"
-      :type="phoneType"
-      >
-        <b-input v-model="phone" />
-      </b-field>
-
-      <!-- overwrite -->
-      <b-field
-      label="Overwrite Previous Records"
-      label-position="on-border"
-      >
-        <b-switch v-model="overwrite" />
-      </b-field>
-
-      <!-- submit -->
-      <b-button
-      type="is-success"
-      @click="clickAdd"
-      :disabled="isLoading || isWorking"
-      >
-        Add Outbound Record
-      </b-button>
-    </section>
-  </div>
+    <!-- Upload Records Tab -->
+    <b-tab-item label="Upload Records">
+      <upload-records :campaign="campaign" />
+    </b-tab-item>
+    <!-- /Upload Records Tab -->
+  </b-tabs>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import UploadRecords from './upload-records'
 
 export default {
+  components: {
+    UploadRecords
+  },
+
   props: {
     campaign: {
       required: true
@@ -220,14 +225,15 @@ export default {
       firstName: '',
       lastName: '',
       accountNumber: '1234',
-      overwrite: false
+      overwrite: false,
+      activeTab: 2
       // sort: 'firstName asc'
     }
   },
 
   methods: {
     ...mapActions([
-      'addDialingRecord',
+      'addDialingRecords',
       'listDialingRecords',
       'deleteDialingRecords'
     ]),
@@ -275,7 +281,7 @@ export default {
       this.listDialingRecords(this.id)
     },
     clickAdd () {
-      this.addDialingRecord({
+      this.addDialingRecords({
         id: this.id,
         records: this.formData,
         overwrite: this.overwrite
@@ -292,6 +298,9 @@ export default {
       'loading',
       'working'
     ]),
+    selectedFile () {
+      return true
+    },
     phoneType () {
       return this.phoneMessage ? 'is-danger' : ''
     },

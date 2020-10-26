@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <b-table
     :data="campaigns"
     ref="campaignsTable"
@@ -68,7 +68,7 @@
         </article>
       </template>
     </b-table>
-  </section>
+  </div>
 </template>
 
 <script>

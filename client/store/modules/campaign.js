@@ -79,7 +79,7 @@ const actions = {
       dispatch('setLoading', {group: 'campaign', type: 'list', value: false})
     }
   },
-  async addDialingRecord ({commit, dispatch, getters}, {id, records, overwrite}) {
+  async addDialingRecords ({commit, dispatch, getters}, {id, records, overwrite}) {
     dispatch('setWorking', {group: 'campaign', type: id, value: true})
     try {
       const url = getters.endpoints.campaign + '/' + id + '/record'
@@ -95,6 +95,13 @@ const actions = {
         }
       }
       await fetch(url, options)
+      const rows = records.match(/\n/g)
+      const message = `Succesfully uploaded ${rows.length} dialing record${rows.length > 1 ? 's' : ''}`
+      // success notification
+      Toast.open({
+        message,
+        type: 'is-success'
+      })
       // clear any errors
       commit(types.SET_DIALING_RECORD_ERROR, {
         id,
@@ -103,7 +110,7 @@ const actions = {
       // refresh data
       dispatch('listDialingRecords', id)
     } catch (e) {
-      console.log('addDialingRecord error', e.json)
+      console.log('addDialingRecords error', e.json)
       commit(types.SET_DIALING_RECORD_ERROR, {
         id,
         errors: e.json.apiError
