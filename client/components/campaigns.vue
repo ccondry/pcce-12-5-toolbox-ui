@@ -11,13 +11,13 @@
     @details-open="openDetails"
     >
       <b-table-column
-      field="refURL"
+      field="id"
       label="ID"
       sortable
       v-slot="props"
       >
         <a @click="$refs.campaignsTable.toggleDetails(props.row)">
-          {{ props.row.refURL.split('/').pop() }}
+          {{ props.row.id }}
         </a>
       </b-table-column>
 
@@ -108,9 +108,8 @@ export default {
     openDetails (row) {
       // get dialing records for campaign that was expanded, if they haven't
       // been retrieved yet
-      const id = row.refURL.split('/').pop()
-      if (!this.dialingRecords[id]) {
-        this.listDialingRecords(id)
+      if (!this.dialingRecords[row.id]) {
+        this.listDialingRecords(row.id)
       }
     }
   },

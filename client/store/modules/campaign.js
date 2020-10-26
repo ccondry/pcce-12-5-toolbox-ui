@@ -19,7 +19,13 @@ const getters = {
 
 const mutations = {
   [types.SET_CAMPAIGNS] (state, data) {
-    state.campaigns = data
+    // append id from refURL to each item
+    state.campaigns = data.map(v => {
+      return {
+        ...v,
+        id: v.refURL.split('/').pop()
+      }
+    })
   },
   [types.SET_DIALING_RECORDS] (state, data) {
     Vue.set(state.records, data.id, data.records)
