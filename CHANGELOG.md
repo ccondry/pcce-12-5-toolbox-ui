@@ -4,6 +4,16 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
 the revision number
 
 
+# 2020.10.26
+
+### Features
+* **Outbound Campaigns:** Organize content into tabs, and add tabs to download
+sample CSV files and upload CSV files.
+
+### Bug Fixes
+* **Outbound Campaigns:** Fix REST API errors for managing outbound campaigns.
+
+
 # 2020.10.22-2
 
 ### Features
