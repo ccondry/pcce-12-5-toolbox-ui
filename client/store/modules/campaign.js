@@ -74,6 +74,7 @@ const actions = {
         }
       }
       const campaigns = await fetch(url, options)
+      console.log('get campaigns response:', campaigns)
       commit(types.SET_CAMPAIGNS, campaigns)
     } catch (e) {
       Toast.open({
