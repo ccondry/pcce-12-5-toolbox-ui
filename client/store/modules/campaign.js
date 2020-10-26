@@ -38,7 +38,8 @@ const actions = {
       const url = `${getters.endpoints.campaign}/${id}/record`
       const options = {
         headers: {
-          Authorization: 'Bearer ' + getters.jwt
+          Authorization: 'Bearer ' + getters.jwt,
+          instance: getters.instanceName
         }
       }
       const response = await fetch(url, options)
@@ -62,7 +63,8 @@ const actions = {
       const url = getters.endpoints.campaign
       const options = {
         headers: {
-          Authorization: 'Bearer ' + getters.jwt
+          Authorization: 'Bearer ' + getters.jwt,
+          instance: getters.instanceName
         }
       }
       const campaigns = await fetch(url, options)
@@ -84,7 +86,8 @@ const actions = {
       const options = {
         method: 'POST',
         headers: {
-          Authorization: 'Bearer ' + getters.jwt
+          Authorization: 'Bearer ' + getters.jwt,
+          instance: getters.instanceName
         },
         body: {
           records,
@@ -120,7 +123,8 @@ const actions = {
       const options = {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + getters.jwt
+          Authorization: 'Bearer ' + getters.jwt,
+          instance: getters.instanceName
         }
       }
       await fetch(url, options)
