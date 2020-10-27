@@ -7,8 +7,8 @@
           <h1 class="title">Welcome</h1>
           <b-field>
             <p>
-              Welcome to the Cisco Packaged Contact Center Enterprise 12.0 Demo
-              on dCloud.
+              Welcome to the Cisco Packaged Contact Center Enterprise 12.5v1
+              Instant Demo on dCloud.
             </p>
           </b-field>
           <b-field>
