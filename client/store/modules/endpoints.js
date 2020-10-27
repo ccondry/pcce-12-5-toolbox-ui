@@ -40,7 +40,8 @@ const endpoints = {
   },
   version: urlBase + '/version',
   authApiVersion: authUrlBase + '/version',
-  campaign: urlBase + '/campaign'
+  campaign: urlBase + '/campaign',
+  webex: authUrlBase + '/resource/joinPcceSupportRoom'
 }
 
 const state = {
