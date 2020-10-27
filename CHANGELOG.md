@@ -4,6 +4,15 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
 the revision number
 
 
+# 2020.10.27-1
+
+### Features
+* **Outbound Campaigns:** Replace placeholder text in Create Record dialing info
+
+### Bug Fixes
+* **Webex:** Fixed joining the Webex Teams support space
+
+
 # 2020.10.27
 
 ### Features
