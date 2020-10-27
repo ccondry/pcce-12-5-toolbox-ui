@@ -4,6 +4,14 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
 the revision number
 
 
+# 2020.10.27
+
+### Features
+* **Outbound Campaigns:** Change overwrite checkbox text to match SPOG
+("Delete Existing Contacts") and add placeholder text box for Create Record
+dialing info
+
+
 # 2020.10.26-1
 
 ### Bug Fixes
