@@ -68,12 +68,52 @@
 
     <div class="tile is-parent">
       <div class="tile box is-child">
-        <p class="subtitle">
-          Outbound Dialing Information
-        </p>
-        <p>For US numbers...</p>
-        <p>For UK numbers...</p>
-        <p>For APJ numbers...</p>
+        <b-collapse
+        :aria-id="`campaign-${id}-dialing-info`"
+        class="panel"
+        animation="slide"
+        >
+          <div
+          class="panel-heading"
+          role="button"
+          :aria-controls="`campaign-${id}-dialing-info`"
+          >
+            <strong>Dialing the Outbound Simulator</strong>
+          </div>
+          <div class="panel-block">
+            <ul class="list">
+              <li>1 followed by a 10-digit US phone number</li>
+              <li>0 followed by any number of digits</li>
+            </ul>
+          </div>
+        </b-collapse>
+
+        <b-collapse
+        :aria-id="`campaign-${id}-dialing-info`"
+        class="panel"
+        animation="slide"
+        >
+          <div
+          class="panel-heading"
+          role="button"
+          :aria-controls="`campaign-${id}-dialing-info`"
+          >
+            <strong>Dialing a Real Phone</strong>
+          </div>
+          <div class="panel-block">
+            <ul class="list">
+              <li v-if="datacenter === 'RTP' || datacenter === 'SJC'">
+                91 followed by a US phone number
+              </li>
+              <li v-if="datacenter === 'LON'">
+                90 followed by a UK phone number
+              </li>
+              <li v-if="datacenter === 'SNG'">
+                9 followed by a Singapore phone number
+              </li>
+            </ul>
+          </div>
+        </b-collapse>
       </div>
     </div>
   </div>
@@ -109,7 +149,8 @@ export default {
       'loading',
       'working',
       'dialingRecordsErrors',
-      'user'
+      'user',
+      'datacenter'
     ]),
     id () {
       try {
@@ -192,3 +233,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+ul.list {
+  list-style: initial !important;
+}
+ul.list li {
+  margin-left: 1rem;
+}
+</style>
