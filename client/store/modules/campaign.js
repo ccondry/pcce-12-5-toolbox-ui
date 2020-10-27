@@ -102,7 +102,7 @@ const actions = {
         }
       }
       await fetch(url, options)
-      const rows = records.match(/\n/g)
+      const rows = records.trim().match(/\n/g)
       const message = `Succesfully uploaded ${rows.length} dialing record${rows.length > 1 ? 's' : ''}`
       // success notification
       Toast.open({

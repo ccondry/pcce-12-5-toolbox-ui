@@ -21,11 +21,9 @@
     </b-field>
 
     <!-- overwrite -->
-    <b-field
-    label="Overwrite Previous Records"
-    >
+    <b-field>
       <b-checkbox v-model="overwrite">
-        {{ overwrite ? 'Yes' : 'No' }}
+        Delete Existing Contacts
       </b-checkbox> 
     </b-field>
 
