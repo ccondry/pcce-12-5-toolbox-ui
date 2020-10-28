@@ -3,7 +3,7 @@
     <ul>
       <!-- the all files zip -->
       <li>
-        <a href="https://mm-static.cxdemo.net/outbound/all.zip" download="all.zip">
+        <a href="https://mm-static.cxdemo.net/outbound/all.zip">
           All Example Files
         </a>
       </li>
