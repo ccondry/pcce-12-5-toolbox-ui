@@ -1,7 +1,15 @@
 # pcce-12-5-toolbox-ui Change Log
 
-Version numbers are semver-compatible dates in YYYY.MM.DD-X format, where X is
-the revision number
+Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
+where X is the revision number
+
+
+# 2020.10.27-2
+
+### Bug Fixes
+* **Welcome:** Update demo version info from PCCE 12.0 to PCCE 12.5v1
+* **Outbound Campaigns:** Make the browser download the sample outbound text 
+files instead of rendering them
 
 
 # 2020.10.27-1
