@@ -26,20 +26,37 @@ export default {
     }
   },
 
+  data () {
+    return {
+      // text file content
+      five: '',
+      ten: '',
+      twenty: ''
+    }
+  },
+
+  async mounted () {
+    // download and cache the text files
+    const type = this.type
+    this.five = await this.getFileData(`CumulusOutbound${type}5.txt`)
+    this.ten = await this.getFileData(`CumulusOutbound${type}10.txt`)
+    this.twenty = await this.getFileData(`CumulusOutbound${type}20.txt`)
+  },
+
   computed: {
-    async files () {
+    files () {
       const type = this.type
       return [{
         name: `CumulusOutbound${type}5.txt`,
-        url: await this.getFileData(`CumulusOutbound${type}5.txt`),
+        url: this.five,
         text: `5 Records Example File for ${type} Campaign`
       }, {
         name: `CumulusOutbound${type}10.txt`,
-        url: await this.getFileData(`CumulusOutbound${type}10.txt`),
+        url: this.ten,
         text: `10 Records Example File for ${type} Campaign`
       }, {
         name: `CumulusOutbound${type}20.txt`,
-        url: await this.getFileData(`CumulusOutbound${type}20.txt`),
+        url: this.twenty,
         text: `20 Records Example File for ${type} Campaign`
       }]
     },
