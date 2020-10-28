@@ -1,11 +1,13 @@
 <template>
   <div style="position: relative;">
     <ul>
+      <!-- the all files zip -->
       <li>
         <a href="https://mm-static.cxdemo.net/outbound/all.zip" download="all.zip">
           All Example Files
         </a>
       </li>
+      <!-- each text file -->
       <li v-for="file of files" :key="file.name">
         <a :href="file.url" :download="file.name">
           {{ file.text }}
@@ -25,19 +27,19 @@ export default {
   },
 
   computed: {
-    files () {
+    async files () {
       const type = this.type
       return [{
         name: `CumulusOutbound${type}5.txt`,
-        url: `https://mm-static.cxdemo.net/outbound/CumulusOutbound${type}5.txt`,
+        url: await this.getFileData(`CumulusOutbound${type}5.txt`),
         text: `5 Records Example File for ${type} Campaign`
       }, {
         name: `CumulusOutbound${type}10.txt`,
-        url: `https://mm-static.cxdemo.net/outbound/CumulusOutbound${type}10.txt`,
+        url: await this.getFileData(`CumulusOutbound${type}10.txt`),
         text: `10 Records Example File for ${type} Campaign`
       }, {
         name: `CumulusOutbound${type}20.txt`,
-        url: `https://mm-static.cxdemo.net/outbound/CumulusOutbound${type}20.txt`,
+        url: await this.getFileData(`CumulusOutbound${type}20.txt`),
         text: `20 Records Example File for ${type} Campaign`
       }]
     },
@@ -52,6 +54,15 @@ export default {
       } else {
         return 'unknown'
       }
+    }
+  },
+
+  methods: {
+    // make the browser download the text files instead of rendering them
+    async getFileData (name) {
+      const response = await window.fetch(`https://mm-static.cxdemo.net/outbound/${name}`)
+      const text = await response.text()
+      return `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`
     }
   }
 }
