@@ -248,6 +248,7 @@
         </div>
       </div>
 
+      <!-- spog -->
       <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12">
           <article class="tile is-child box">
@@ -291,6 +292,7 @@
         </div>
       </div>
 
+      <!-- CUIC -->
       <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12">
           <article class="tile is-child box">
