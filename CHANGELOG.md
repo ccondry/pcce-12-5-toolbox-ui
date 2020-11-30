@@ -4,6 +4,13 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2020.11.30
+
+### Bug Fixes
+* **Provision:** Fix the registration of user provision information after
+provision/reprovision has completed successfully
+
+
 # 2020.10.27-3
 
 ### Bug Fixes
