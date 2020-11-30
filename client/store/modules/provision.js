@@ -62,7 +62,10 @@ const actions = {
       // register provision status with pcce-toolbox-proxy
       // TODO get that static string out of there!
       const query = {demo: 'pcce', version: '12.5v1'}
-      post(getters.instanceName, getters.jwt, getters.endpoints.instanceRegister, null, query)
+      post(getters.instanceName, getters.jwt, getters.endpoints.provisionRegister, null, query)
+      .catch(e => {
+        console.log('failed to register provision information:', e.message)
+      })
       // get new status
       dispatch('getProvisionStatus', {showNotification: false})
       Toast.open({
