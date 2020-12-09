@@ -28,8 +28,8 @@ const actions = {
     // REST API endpoint URL
     const endpoint = getters.endpoints.webex
     try {
-      // send email in query string parameters
-      await post(getters.instanceName, getters.jwt, endpoint, {personEmail: email})
+      // send email in body
+      await post(getters.instanceName, getters.jwt, endpoint, null, {personEmail: email})
       // show a Toast notification on success, if not disabled
       if (showNotification) {
         Toast.open({
