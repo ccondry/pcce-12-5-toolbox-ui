@@ -39,13 +39,23 @@ const actions = {
         })
       }
     } catch (e) {
-      console.log(action, 'failed:', e)
-      // show a Toast notification on error
-      Toast.open({
-        duration: 14000,
-        message: `${action} failed with this error: ` + e.response.data,
-        type: 'is-danger'
-      })
+      if (e.response.status === 409) {
+        // already in support room
+        Toast.open({
+          duration: 8 * 1000,
+          message: `You are already in the Webex Teams support room.`,
+          type: 'is-success'
+        })
+      } else {
+        // unexpected error
+        console.log(action, 'failed:', e)
+        // show a Toast notification on error
+        Toast.open({
+          duration: 14000,
+          message: `${action} failed with this error: ` + e.response.data,
+          type: 'is-danger'
+        })
+      }
     } finally {
       // set working state off
       dispatch('setWorking', {group, type, value: false})
