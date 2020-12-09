@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2020.12.9-1
+
+### Bug Fixes
+* **Join Support Room:** Fix the join support room button again
+
+
 # 2020.12.9
 
 ### Bug Fixes
