@@ -29,7 +29,7 @@ const actions = {
     const endpoint = getters.endpoints.webex
     try {
       // send email in query string parameters
-      await post(getters.instanceName, getters.jwt, endpoint, {email})
+      await post(getters.instanceName, getters.jwt, endpoint, {personEmail: email})
       // show a Toast notification on success, if not disabled
       if (showNotification) {
         Toast.open({
