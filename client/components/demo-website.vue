@@ -26,36 +26,12 @@
                 Choose Your Demo Vertical
               </option>
               <option
-              v-for="(brand, index) in systemBrands" 
-              :value="brand.id"
-              :key="'system' + index"
+              v-for="vertical in verticalOptions"
+              :value="vertical.id"
+              :key="vertical.id"
+              :disabled="vertical.disabled"
               >
-                {{ `${brand.name} (${brand.id})` }}
-              </option>
-              <option disabled>-----------------------------------------</option>
-              <option
-              v-if="brandFilter === 'all'"
-              v-for="(brand, index) in userBrands"
-              :value="brand.id"
-              :key="'user' + index"
-              >
-                {{ `${brand.name} (${brand.id})` }}
-              </option>
-              <option
-              v-if="brandFilter === 'mine'"
-              v-for="(brand, index) in myBrands"
-              :value="brand.id"
-              :key="'mine' + index"
-              >
-                {{ `${brand.name} (${brand.id})` }}
-              </option>
-              <option
-              v-if="brandFilter === 'other'"
-              v-for="(brand, index) in filteredSortedBrands"
-              :value="brand.id"
-              :key="'other' + index"
-              >
-                {{ `${brand.name} (${brand.id})` }}
+                {{ `${vertical.name}${vertical.id ? ` (${vertical.id})` : ''}` }}
               </option>
             </b-select>
           </b-field>
@@ -77,49 +53,6 @@
             <button class="button is-success" @click="clickGo" :disabled="working.app.user">Go to Demo Website</button>
           </b-field>
         </b-field>
-        
-        <b-field>
-          <b-checkbox v-model="showMore">Show More</b-checkbox>
-        </b-field>
-
-        <b-field v-show="showMore">
-          <div class="field">
-            <div class="field">
-              <b-radio
-              v-model="brandFilter"
-              v-if="user.admin"
-              native-value="all"
-              >
-                Show all verticals
-              </b-radio>
-            </div>
-            <div class="field">
-              <b-radio
-              v-model="brandFilter"
-              native-value="mine"
-              >
-                Show my verticals
-              </b-radio>
-            </div>
-            <div class="field">
-              <b-radio
-              v-model="brandFilter"
-              native-value="other"
-              >
-                <span style="float: left;">Show this user's verticals:</span>
-              </b-radio>
-
-              <b-autocomplete
-              v-model="ownerFilter"
-              :data="autocompleteOwners"
-              style="width: 20em;"
-              >
-                <template slot="empty">No results found</template>
-              </b-autocomplete>
-            </div>
-          </div>
-        </b-field>
-
         <p>
           Note: You can create and configure your own vertical on the
           <a href="/branding" target="brand-toolbox">
@@ -166,20 +99,17 @@ export default {
       'cumulusDemoLink',
       'demoConfig'
     ]),
-    autocompleteOwners () {
-      // all owners of all verticals
-      const allOwners = this.verticals.map(v => v.owner)
-      // unique owners list
-      const uniqueOwners = Array.from(new Set(allOwners))
-      // remove
-      return uniqueOwners.filter((option) => {
-        return option
-        .toString()
-        .toLowerCase()
-        .indexOf(this.ownerFilter.toLowerCase()) >= 0
-      })
+    verticalOptions () {
+      return [
+        ...this.systemVerticals,
+        {
+          id: null,
+          name: '-------------------------------------',
+          disabled: true
+        },
+        ...this.userVerticals]
     },
-    sortedBrands () {
+    sortedVerticals () {
       // make a mutable copy of the store data
       try {
         const copy = JSON.parse(JSON.stringify(this.verticals))
@@ -198,21 +128,18 @@ export default {
         })
         return copy
       } catch (e) {
-        console.log(`couldn't get sorted brands`, e)
+        console.log(`couldn't get sorted verticals:`, e)
       }
     },
-    systemBrands () {
-      return this.sortedBrands.filter(v => !v.owner || v.owner === 'system' || v.owner === null)
+    systemVerticals () {
+      return this.sortedVerticals.filter(v => {
+        return !v.owner || v.owner === 'system' || v.owner === null
+      })
     },
-    userBrands () {
-      return this.sortedBrands.filter(v => v.owner && v.owner !== 'system' && v.owner !== null)
-    },
-    myBrands () {
-      return this.sortedBrands.filter(v => v.owner === this.user.username)
-    },
-    filteredSortedBrands () {
-      // filter to only show the brands owned by specified user
-      return this.sortedBrands.filter(v => v.owner === this.ownerFilter)
+    userVerticals () {
+      return this.sortedVerticals.filter(v => {
+        return v.owner && v.owner === this.user.username
+      })
     }
   },
 
