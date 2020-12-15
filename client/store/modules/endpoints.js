@@ -4,11 +4,13 @@ let authUrlBase = '/api/v1/auth'
 let urlBase = '/api/v1/pcce-12-5'
 if (!isProduction) {
   // authUrlBase = 'http://localhost:3032/api/v1/auth'
+  // through toolbox-proxy
   // urlBase = 'http://localhost:3053/api/v1/pcce-12-5'
-  // urlBase = 'http://localhost:3058/api/v1/pcce-12-5'
+  // direct to pcce-12-5-toolbox-api
+  urlBase = 'http://localhost:3058/api/v1/pcce-12-5'
   // use production REST APIs
   authUrlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/auth'
-  urlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/pcce-12-5'
+  // urlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/pcce-12-5'
 }
 
 const endpoints = {
