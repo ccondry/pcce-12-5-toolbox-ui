@@ -478,27 +478,20 @@ export default {
       // TODO prompt user if they are already provisioned in another active
       // datacenter
       // skip prompt for admins using switch-user
-      if (this.user.suJwt) {
-        this.provisionUser({password: 'ignore'})
-        return
-      }
+      // if (this.user.suJwt) {
+      //   this.provisionUser({password: 'ignore'})
+      //   return
+      // }
       this.$buefy.dialog.prompt({
-        message: `Please enter your Toolbox password to provision your PCCE demo:`,
+        message: `Please choose a VPN password:`,
         inputAttrs: {
-          placeholder: 'your dCloud Toolbox password',
+          placeholder: '',
           type: 'password'
         },
+        confirmText: 'Start',
+        type: 'is-success',
         onConfirm: async (password) => {
-          try {
-            await this.provisionUser({password})
-            this.$buefy.dialog.confirm({
-              message: `Your account has been provisioned successfully, however
-              email routing will not function for your account until after 
-              midnight local datacenter time.`
-            })
-          } catch (e) {
-            console.log('error awaiting provisionUser:', e.message)
-          }
+          await this.provisionUser({password})
         }
       })
     },

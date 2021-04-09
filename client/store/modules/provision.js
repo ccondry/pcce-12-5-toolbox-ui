@@ -1,6 +1,9 @@
 import * as types from '../mutation-types'
 import { post, load } from '../../utils'
-import { ToastProgrammatic as Toast } from 'buefy'
+import {
+  ToastProgrammatic as Toast,
+  DialogProgrammatic as Dialog
+} from 'buefy'
 
 const state = {
   status: null
@@ -49,15 +52,7 @@ const actions = {
     dispatch('setWorking', {group: 'user', type: 'provision', value: true})
     console.log('starting PCCE provision...')
     try {
-      const username = getters.user.username
-      // console.log('endpoint =', endpoint)
-      // make sure their password is right
-      // don't test login credentials when user is admin using switch-user
-      if (!getters.user.suJwt) {
-        const auth = await post(getters.instance, getters.jwt, getters.endpoints.login, null, {username, password})
-        console.log('PCCE provision - auth - response:', auth)
-      }
-      // now provision using their toolbox password
+      // now provision using their chosen VPN password
       await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null, {password})
       // register provision status with pcce-toolbox-proxy
       // TODO get that static string out of there!
@@ -71,6 +66,11 @@ const actions = {
       Toast.open({
         message: `Provisioning successful`,
         type: 'is-success'
+      })
+      Dialog.confirm({
+        message: `Your account has been provisioned successfully, however
+        email routing will not function for your account until after 
+        midnight local datacenter time.`
       })
     } catch (e) {
       console.log('error during PCCE provision script', e)
