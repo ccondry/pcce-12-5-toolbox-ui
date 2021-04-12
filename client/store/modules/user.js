@@ -17,6 +17,20 @@ const mutations = {
 }
 
 const actions = {
+  resetPassword ({dispatch, getters}, password) {
+    dispatch('fetch', {
+      group: 'user',
+      type: 'password',
+      url: getters.endpoints.password,
+      options: {
+        method: 'POST',
+        body: {
+          password
+        }
+      },
+      message: 'reset password'
+    })
+  }
 }
 
 export default {

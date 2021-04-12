@@ -13,6 +13,7 @@ import dcloud from './dcloud'
 import endpoints from './endpoints'
 import finesse from './finesse'
 import campaign from './campaign'
+import fetch from './fetch'
 
 export default {
   app,
@@ -29,5 +30,6 @@ export default {
   dcloud,
   endpoints,
   finesse,
-  campaign
+  campaign,
+  fetch
 }

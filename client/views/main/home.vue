@@ -75,7 +75,7 @@
             <h1 class="title">VPN</h1>
             <div class="content">
               <p>
-                You can connect your laptop to the demo session using AnyConnect:
+                Connect your laptop to the demo session using AnyConnect:
               </p>
               <ul>
                 <li>
@@ -93,9 +93,19 @@
                   </a>
                 </li>
                 <li>
-                  Password: <strong>Your dCloud Toolbox password</strong>
+                  Password: <strong>Your chosen demo VPN password</strong>
                 </li>
               </ul>
+              <b-field>
+                <b-button
+                style="margin-left: 1rem;"
+                type="is-primary"
+                rounded
+                @click="clickResetPassword"
+                >
+                  Reset VPN Password
+                </b-button>
+              </b-field>
               <p>
                 Note: If you have any issues resolving DNS in the demo while using
                 Windows, try rebooting Windows to resolve this issue.
@@ -429,8 +439,25 @@ export default {
       'getProvisionStatus',
       'provisionUser',
       'copyToClipboard',
-      'getCampaigns'
+      'getCampaigns',
+      'resetPassword'
     ]),
+    clickResetPassword () {
+      this.$buefy.dialog.prompt({
+        title: 'Reset Demo VPN Password',
+        message: `Enter your new demo VPN password:`,
+        type: 'is-success',
+        confirmText: 'Submit',
+        rounded: true,
+        inputAttrs: {
+          type: 'password'
+        },
+        onConfirm: (password) => {
+          console.log('changing password...')
+          this.resetPassword(password)
+        }
+      })
+    },
     clickRefreshCampaigns () {
       this.getCampaigns()
     },
