@@ -28,7 +28,8 @@ const actions = {
           password
         }
       },
-      message: 'reset password'
+      message: 'reset password',
+      showNotification: true
     })
   }
 }

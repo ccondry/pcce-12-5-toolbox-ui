@@ -73,7 +73,8 @@
         <div class="tile is-parent is-12">
           <article class="tile is-child box">
             <h1 class="title">VPN</h1>
-            <div class="content">
+            <div class="content" style="position: relative;">
+              <b-loading :active="working.user.password" :is-full-page="false" />
               <p>
                 Connect your laptop to the demo session using AnyConnect:
               </p>
@@ -102,6 +103,7 @@
                 type="is-primary"
                 rounded
                 @click="clickResetPassword"
+                :disabled="working.user.password"
                 >
                   Reset VPN Password
                 </b-button>
