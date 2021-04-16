@@ -17,8 +17,8 @@ const mutations = {
 }
 
 const actions = {
-  resetPassword ({dispatch, getters}, password) {
-    dispatch('fetch', {
+  async resetPassword ({dispatch, getters}, password) {
+    return dispatch('fetch', {
       group: 'user',
       type: 'password',
       url: getters.endpoints.password,
