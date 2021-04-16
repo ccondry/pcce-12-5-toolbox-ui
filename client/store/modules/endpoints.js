@@ -45,7 +45,7 @@ const endpoints = {
   campaign: urlBase + '/campaign',
   webex: authUrlBase + '/resource/joinPcceSupportRoom',
   // reset password
-  password: urlBase + '/resource/password'
+  password: urlBase + '/password'
 }
 
 const state = {
