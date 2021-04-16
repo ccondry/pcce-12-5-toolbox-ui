@@ -100,7 +100,7 @@ const actions = {
         if (typeof onError === 'function') {
           onError(error)
         }
-        return error
+        throw error
       }
     } catch (e) {
       console.error(`${message} failed: ${e.message}`)
@@ -112,6 +112,8 @@ const actions = {
           queue: false
         })
       }
+      // return the error so dispatch() can handle the response
+      return e
     } finally {
       dispatch(loadingOrWorking, {group, type, value: false})
     }
