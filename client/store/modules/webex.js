@@ -21,7 +21,7 @@ const actions = {
     // metadata
     const group = 'webex'
     const type = 'invite'
-    const action = 'Add user to the PCCE 12.5 Demo Support Webex Teams room'
+    const action = 'Add user to the PCCE 12.5 Demo Support Webex space'
     // set working state on
     dispatch('setWorking', {group, type, value: true})
     console.log('starting', action, 'using email', email, '...')
@@ -43,7 +43,7 @@ const actions = {
         // already in support room
         Toast.open({
           duration: 8 * 1000,
-          message: `You are already in the Webex Teams support room.`,
+          message: `You are already in the Webex support space.`,
           type: 'is-success'
         })
       } else {
