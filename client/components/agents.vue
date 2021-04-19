@@ -69,7 +69,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/sandra.png',
           finesseUsername: 'sjeffers' + this.user.id,
-          rdpUsername: 'sjeffers' + this.user.id,
+          rdpUsername: 'dcloud\\sjeffers' + this.user.id,
           password: 'C1sco12345',
           extension: '1080' + this.user.id,
           name: 'Sandra Jefferson',
@@ -79,7 +79,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/josh.png',
           finesseUsername: 'jopeters' + this.user.id,
-          rdpUsername: 'jopeters' + this.user.id,
+          rdpUsername: 'dcloud\\jopeters' + this.user.id,
           password: 'C1sco12345',
           extension: '1081' + this.user.id,
           name: 'Josh Peterson',
@@ -89,7 +89,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/trudy.png',
           finesseUsername: 'trujones' + this.user.id,
-          rdpUsername: 'trujones' + this.user.id,
+          rdpUsername: 'dcloud\\trujones' + this.user.id,
           password: 'C1sco12345',
           extension: '1087' + this.user.id,
           name: 'Trudy Vere-Jones',
@@ -99,7 +99,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/owen.png',
           finesseUsername: 'oharvey' + this.user.id,
-          rdpUsername: 'oharvey' + this.user.id,
+          rdpUsername: 'dcloud\\oharvey' + this.user.id,
           password: 'C1sco12345',
           extension: '1085' + this.user.id,
           name: 'Owen Harvey',
@@ -109,7 +109,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/annika.png',
           finesseUsername: 'annika' + this.user.id,
-          rdpUsername: 'annika' + this.user.id,
+          rdpUsername: 'dcloud\\annika' + this.user.id,
           password: 'C1sco12345',
           extension: '1086' + this.user.id,
           name: 'Annika Hamilton',
@@ -119,7 +119,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/helen.png',
           finesseUsername: 'hliang' + this.user.id,
-          rdpUsername: 'hliang' + this.user.id,
+          rdpUsername: 'dcloud\\hliang' + this.user.id,
           password: 'C1sco12345',
           extension: '1083' + this.user.id,
           name: 'Helen Liang',
@@ -129,7 +129,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/rick.png',
           finesseUsername: 'rbarrows' + this.user.id + '@dcloud.cisco.com',
-          rdpUsername: 'rbarrows' + this.user.id,
+          rdpUsername: 'dcloud\\rbarrows' + this.user.id,
           password: 'C1sco12345',
           extension: '1082' + this.user.id,
           name: 'Rick Barrows',
@@ -139,7 +139,7 @@ export default {
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/james.png',
           finesseUsername: 'jabracks' + this.user.id + '@dcloud.cisco.com',
-          rdpUsername: 'jabracks' + this.user.id,
+          rdpUsername: 'dcloud\\jabracks' + this.user.id,
           password: 'C1sco12345',
           extension: '1084' + this.user.id,
           name: 'James Bracksted',
