@@ -68,54 +68,8 @@
         </div>
       </div>
 
-      <!-- user is provisioned - show agent info -->
-      <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-12">
-          <article class="tile is-child box">
-            <h1 class="title">VPN</h1>
-            <div class="content" style="position: relative;">
-              <b-loading :active="working.user.password" :is-full-page="false" />
-              <p>
-                Connect your laptop to the demo session using AnyConnect:
-              </p>
-              <ul>
-                <li>
-                  Address:
-                  <strong>{{ vpnAddress }}</strong>
-                  <a @click="clickCopy(vpnAddress, 'VPN Address')">
-                    <b-icon icon="layers"></b-icon>
-                  </a>
-                </li>
-                <li>
-                  Username:
-                  <strong>{{ user.username }}</strong>
-                  <a @click="clickCopy(user.username, 'VPN Username')">
-                    <b-icon icon="layers"></b-icon>
-                  </a>
-                </li>
-                <li>
-                  Password: <strong>Your chosen demo VPN password</strong>
-                </li>
-              </ul>
-              <b-field>
-                <b-button
-                style="margin-left: 1rem;"
-                type="is-primary"
-                rounded
-                @click="clickResetPassword"
-                :disabled="working.user.password"
-                >
-                  Reset VPN Password
-                </b-button>
-              </b-field>
-              <p>
-                Note: If you have any issues resolving DNS in the demo while using
-                Windows, try rebooting Windows to resolve this issue.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
+      <!-- VPN -->
+      <vpn v-if="isProvisioned" />
 
       <!-- Workstation -->
       <div class="tile is-ancestor" v-if="isProvisioned">
@@ -392,12 +346,14 @@ import Agents from '../../components/agents.vue'
 import moment from 'moment'
 import DemoWebsite from '../../components/demo-website'
 import Campaigns from '../../components/campaigns'
+import Vpn from '../../components/vpn'
 
 export default {
   components: {
     Agents,
     DemoWebsite,
-    Campaigns
+    Campaigns,
+    Vpn
   },
 
   data () {
@@ -441,25 +397,8 @@ export default {
       'getProvisionStatus',
       'provisionUser',
       'copyToClipboard',
-      'getCampaigns',
-      'resetPassword'
+      'getCampaigns'
     ]),
-    clickResetPassword () {
-      this.$buefy.dialog.prompt({
-        title: 'Reset Demo VPN Password',
-        message: `Enter your new demo VPN password:`,
-        type: 'is-success',
-        confirmText: 'Submit',
-        rounded: true,
-        inputAttrs: {
-          type: 'password'
-        },
-        onConfirm: (password) => {
-          console.log('changing password...')
-          this.resetPassword(password)
-        }
-      })
-    },
     clickRefreshCampaigns () {
       this.getCampaigns()
     },
@@ -544,7 +483,6 @@ export default {
       'provisioningDisabled',
       'rdpAddress',
       'rdpFqdn',
-      'vpnAddress',
       'ldapDomain',
       'sessionId',
       'datacenter'
