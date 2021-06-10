@@ -18,8 +18,8 @@
             </li>
             <li>
               Username:
-              <strong>{{ user.username }}</strong>
-              <a @click="clickCopy(user.username, 'VPN Username')">
+              <strong>{{ vpnUsername }}</strong>
+              <a @click="clickCopy(vpnUsername, 'VPN Username')">
                 <b-icon icon="layers"></b-icon>
               </a>
             </li>
@@ -80,7 +80,14 @@ export default {
       'vpnAddress',
       'user',
       'copyToClipboard'
-    ])
+    ]),
+    vpnUsername () {
+      if (this.user.username.length > 20) {
+        return this.user.username.slice(0, 20)
+      } else {
+        return this.user.username
+      }
+    }
   },
 
   methods: {
