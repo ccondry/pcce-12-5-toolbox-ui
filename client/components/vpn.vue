@@ -78,8 +78,7 @@ export default {
       'working',
       'links',
       'vpnAddress',
-      'user',
-      'copyToClipboard'
+      'user'
     ]),
     vpnUsername () {
       if (this.user.username.length > 20) {
