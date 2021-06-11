@@ -4,6 +4,13 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.5.11
+
+### Fixes
+* **VPN:** Fixed long toolbox usernames displaying the incorrect VPN username.
+Fixed the copy to clipboard button.
+
+
 # 2021.5.6
 
 ### Features
