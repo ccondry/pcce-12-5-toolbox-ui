@@ -92,7 +92,8 @@ export default {
 
   methods: {
     ...mapActions([
-      'resetPassword'
+      'resetPassword',
+      'copyToClipboard'
     ]),
     clickResetPassword () {
       this.$buefy.dialog.prompt({
